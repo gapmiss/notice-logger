@@ -1,0 +1,15 @@
+{
+	"id": "notice-logger",
+	"name": "Notice logger",
+	"version": "0.1.0",
+	"minAppVersion": "0.15.0",
+	"description": "Logs all notices to the developer console, with optional prefix.",
+	"author": "@gapmiss",
+	"authorUrl": "https://github.com/gapmiss",
+	"fundingUrl": {
+		"Github Sponsors": "https://github.com/sponsors/gapmiss",
+		"Buy Me a Coffee": "https://buymeacoffee.com/gapmiss",
+		"Ko-Fi": "https://ko-fi.com/gapmiss"
+	},
+	"isDesktopOnly": false
+}
