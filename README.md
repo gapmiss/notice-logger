@@ -2,6 +2,10 @@
 
 An [Obsidian.md](https://obsidian.md) plugin for logging all notices to the developer console, with optional prefix.
 
+## Demo
+
+![Demo screenshot](./resources/NOTICE-LOGGER-Obsidian-v1.5.11-2024-03-22-05.25.34.gif)
+
 ## Installation
 
 ### via BRAT (Beta Reviewer's Auto-update Tool)
@@ -26,3 +30,8 @@ or:
 3. move `main.js` & `manifest.json` to `/path/to/vault/.obsidian/plugins/notice-logger`
 4. Settings > Community plugins > reload **Installed plugins**
 5. enable plugin
+
+## ROADMAP
+
+- [ ] add timestamp option
+- [ ] add commands to stop/start logging
