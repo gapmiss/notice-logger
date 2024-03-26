@@ -8,6 +8,12 @@ An [Obsidian.md](https://obsidian.md) plugin for logging all notices to the deve
 
 ## Installation
 
+### Community plugins
+
+1. [Obsidian.md/plugins](https://obsidian.md/plugins?id=notice-logger) or
+2. Open *Settings* > *Community Plugins* > *Browse*
+3. Search for "Notice logger"
+
 ### via BRAT (Beta Reviewer's Auto-update Tool)
 
 1. Ensure [BRAT](https://github.com/TfTHacker/obsidian42-brat) is installed
