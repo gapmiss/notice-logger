@@ -1,10 +1,21 @@
 # Notice Logger
 
-An [Obsidian.md](https://obsidian.md) plugin for logging all notices to the developer console, with optional prefix.
+An [Obsidian.md](https://obsidian.md) plugin for logging all notices to the developer console, with optional prefix and timestamp.
 
 ## Demo
 
-![Demo screenshot](./resources/NOTICE-LOGGER-Obsidian-v1.5.11-2024-03-22-05.25.34.gif)
+![Demo screenshot](./resources/NOTICE-LOGGER-PLUGIN-Obsidian-v1.6.1-2024-05-26-10.30.08.gif)
+
+## Settings tab
+
+![Settings tab screenshot](./resources/NOTICE-LOGGER-PLUGIN-Obsidian-v1.6.1-2024-05-26-10.37.41.png)
+
+## Commands
+
+Available commands to quickly enable/disable logging to the developer console.
+
+- Enable notice logging
+- Disable notice logging
 
 ## Installation
 
@@ -39,5 +50,5 @@ or:
 
 ## ROADMAP
 
-- [ ] add timestamp option
-- [ ] add commands to stop/start logging
+- [X] add timestamp option
+- [X] add commands to stop/start logging
