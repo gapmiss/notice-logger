@@ -4,11 +4,11 @@ An [Obsidian.md](https://obsidian.md) plugin for logging all notices to the deve
 
 ## Demo
 
-![Demo screenshot](./resources/NOTICE-LOGGER-PLUGIN-Obsidian-v1.6.1-2024-05-26-10.30.08.gif)
+![Demo screenshot](./resources/NOTICE-LOGGER-PLUGIN-Obsidian-v1.6.1-2024-05-26-10.57.33.gif)
 
 ## Settings tab
 
-![Settings tab screenshot](./resources/NOTICE-LOGGER-PLUGIN-Obsidian-v1.6.1-2024-05-26-10.37.41.png)
+![Settings tab screenshot](./resources/NOTICE-LOGGER-PLUGIN-Obsidian-v1.6.1-2024-05-26-10.59.21.png)
 
 ## Commands
 
