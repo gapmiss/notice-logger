@@ -1,6 +1,6 @@
 {
 	"name": "notice-logger",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Notice logger plugin for Obsidian.md",
 	"main": "main.js",
 	"scripts": {
