@@ -34,7 +34,7 @@ Available commands to quickly enable/disable logging to the developer console.
 
 ### Manually
 
-1. download `main.js`, `manifest.json` from the latest [release archive](https://github.com/gapmiss/notice-logger/releases/)
+1. download `main.js`, `manifest.json` from the latest [release](https://github.com/gapmiss/notice-logger/releases/)
 2. create a new folder `/path/to/vault/.obsidian/plugins/notice-logger`
 3. move `main.js` & `manifest.json` to `/path/to/vault/.obsidian/plugins/notice-logger`
 4. Settings > Community plugins > reload **Installed plugins**
