@@ -34,11 +34,6 @@ jobs:
         with:
           subject-path: main.js
 
-      - name: Attest styles.css
-        uses: actions/attest-build-provenance@v2
-        with:
-          subject-path: styles.css
-
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
