@@ -1,4 +1,4 @@
-import { App, Plugin, PluginManifest, PluginSettingTab, Setting, moment, Notice } from 'obsidian';
+import { App, Plugin, PluginSettingTab, Setting, moment, Notice } from 'obsidian';
 
 interface NoticeLoggerSettings {
   enableLogging: boolean;
@@ -13,14 +13,8 @@ const DEFAULT_SETTINGS: NoticeLoggerSettings = {
 }
 
 export default class NoticeLoggerPlugin extends Plugin {
-  settings: NoticeLoggerSettings;
-  manifest: PluginManifest;
-  plugin: NoticeLoggerPlugin;
+  settings!: NoticeLoggerSettings;
   private observers: MutationObserver[] = [];
-
-  constructor(app: App, manifest: PluginManifest) {
-    super(app, manifest);
-  }
 
   async onload() {
     
@@ -30,7 +24,7 @@ export default class NoticeLoggerPlugin extends Plugin {
       id: "enable-notice-logging",
       name: "Enable notice logging",
       callback: async () => {
-        this.enableLogging();
+        await this.enableLogging();
       },
     });
 
@@ -38,7 +32,7 @@ export default class NoticeLoggerPlugin extends Plugin {
       id: "disable-notice-logging",
       name: "Disable notice logging",
       callback: async () => {
-        this.disableLogging();
+        await this.disableLogging();
       },
     });
     
@@ -67,9 +61,10 @@ export default class NoticeLoggerPlugin extends Plugin {
                   noticeLogItem += settings.prefix + ' ';
                 }
                 if (settings.timestamp !== '') {
-                  noticeLogItem += '[' + moment().format(settings.timestamp) + '] ';
+                  noticeLogItem += '[' + (moment as unknown as () => { format: (f: string) => string })().format(settings.timestamp) + '] ';
                 }
                 noticeLogItem += notice.textContent;
+                // eslint-disable-next-line no-console, obsidianmd/rule-custom-message -- logging notices to console is this plugin's core feature
                 console.log(noticeLogItem);
               }
             });
@@ -90,14 +85,12 @@ export default class NoticeLoggerPlugin extends Plugin {
       return observer;
     };
 
-    // 
-    const parent = document.querySelector('body') as Node;
+    const parent = activeDocument.querySelector('body') as Node;
     
     startObserving(parent, 'notice', this.settings);
 
     this.addSettingTab(new NoticeLoggerSettingTab(this.app, this));
 
-    console.log('Notice logger plugin loaded');
   }
 
   onunload() {
@@ -106,7 +99,6 @@ export default class NoticeLoggerPlugin extends Plugin {
     this.observers.forEach((obs) => {
       obs.disconnect();
     });
-    console.log('Notice logger plugin unloaded');
   }
 
   async enableLogging() {
@@ -122,7 +114,7 @@ export default class NoticeLoggerPlugin extends Plugin {
   }
 
   async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData() as Partial<NoticeLoggerSettings>);
   }
 
   async saveSettings() {
@@ -167,22 +159,21 @@ class NoticeLoggerSettingTab extends PluginSettingTab {
           await this.plugin.saveSettings();
         }));
 
-    let descMomentFormat = document.createDocumentFragment();
-    descMomentFormat.append(
-      "Prepend console log lines with [timestamp]. Leave blank to disable.",
-      descMomentFormat.createEl('br'),
-      "Learn about available formatting tokens in the ",
-      descMomentFormat.createEl("a", {
-        href: "https://momentjs.com/docs/#/displaying/format/",
-        text: "moment.js documentation",
-        attr: { "aria-label": "https://momentjs.com/docs/#/displaying/format/", "data-tooltip-position": "top", "tabindex": '0' }
-      }),
-      "."
-    );
+    const timestampSetting = new Setting(containerEl)
+      .setName('Timestamp');
 
-    new Setting(containerEl)
-      .setName('Timestamp')
-      .setDesc(descMomentFormat)
+    const descEl = timestampSetting.descEl;
+    descEl.appendText("Prepend console log lines with [timestamp]. Leave blank to disable.");
+    descEl.createEl('br');
+    descEl.appendText("Learn about available formatting tokens in the ");
+    descEl.createEl("a", {
+      href: "https://momentjs.com/docs/#/displaying/format/",
+      text: "moment.js documentation",
+      attr: { "aria-label": "moment.js format documentation", "data-tooltip-position": "top", "tabindex": '0' }
+    });
+    descEl.appendText(".");
+
+    timestampSetting
       .addText(text => text
         .setPlaceholder('YYYY-MM-DD HH:mm:ss')
         .setValue(this.plugin.settings.timestamp)
